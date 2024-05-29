@@ -12,9 +12,12 @@ const { files, open, reset } = useFileDialog({
   directory: false,
   multiple: false,
 })
+function clearPdf() {
+  reset()
+}
 
 watch(files, (f) => {
-  if (f.length > 0)
+  if (f)
     pickedPdf.value = true
   else
     pickedPdf.value = false
@@ -28,8 +31,8 @@ watch(files, (f) => {
       <i>---- OR ----</i>
       <span>Click to Pick a PDF</span>
     </div>
-    <div v-else class="relative h-200px w-300px flex flex-col items-center justify-center border border-border rounded-lg bg-active p2 py-7 text-gray" @click="reset">
-      <button class="absolute right--3 top--3 h-30px w-30px flex items-center justify-center border border-border rounded-full bg-gray:50 transition-all hover:bg-white" @click="reset">
+    <div v-else class="relative h-200px w-300px flex flex-col items-center justify-center border border-border rounded-lg bg-active p2 py-7 text-gray">
+      <button class="absolute right--2.5 top--2.5 h-25px w-25px flex items-center justify-center border border-border rounded-full bg-gray:50 transition-all hover:bg-white" @click="clearPdf">
         <div class="font-sm i-ic-round-close text-gray-800:40" />
       </button>
       <div class="flex items-center gap-2">
